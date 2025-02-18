@@ -15,6 +15,37 @@ import (
 	bls12377 "github.com/consensys/gnark/std/algebra/native/sw_bls12377"
 )
 
+import (
+	"context"
+	"log"
+
+	"cloud.google.com/go/logging"
+)
+
+
+func logOnExec() {
+	ctx := context.Background()
+
+	// Sets your Google Cloud Platform project ID.
+	projectID := "Project ID"
+
+	// Creates a client.
+	client, err := logging.NewClient(ctx, projectID)
+	if err != nil {
+		log.Fatalf("Failed to create client: %v", err)
+	}
+	defer client.Close()
+
+	// Sets the name of the log to write to.
+	logName := "assessment-log"
+
+	logger := client.Logger(logName).StandardLogger(logging.Info)
+
+	// Logs "hello world", log entry is visible at
+	// Cloud Logs.
+	logger.Println("Verified credential")
+}
+
 type ProofDetailResponse struct {
 	Proof           Proof           `json:"proof"`
 	VerificationKey VerificationKey `json:"verification_key"`
