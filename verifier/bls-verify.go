@@ -23,7 +23,7 @@ import (
 )
 
 
-func logOnExec() {
+func logOnExecution() {
 	ctx := context.Background()
 
 	// Sets your Google Cloud Platform project ID.
@@ -212,4 +212,5 @@ func main() {
 	err = groth16.Verify(proof, verifyingKey, publicWitness)
 	exitOnError(err, "verifying proof")
 	fmt.Println("Proof verified successfully.")
+	logOnExecution()
 }

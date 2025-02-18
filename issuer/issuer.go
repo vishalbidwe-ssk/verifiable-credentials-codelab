@@ -21,7 +21,7 @@ import (
 )
 
 
-func logOnExec() {
+func logOnExecution() {
 	ctx := context.Background()
 
 	// Sets your Google Cloud Platform project ID.
@@ -266,5 +266,5 @@ func main() {
 	exitOnError(err, "writing signed credential file")
 
 	fmt.Printf("Signed credential written to %s\n", signedCredentialPath)
-	logOnExec()
+	logOnExecution()
 }
